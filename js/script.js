@@ -67,9 +67,31 @@ function printQuote() {
 
 }
 
+/***
+  each time we click the event listener we change the background color randomly
+***/
+
+function changeColor() {
+  let colorArr = ["red", "green", "blue", "yellow", "pink", "purple", "grey"];
+  let colorChangeIdx = Math.floor(Math.random() * colorArr.length);
+  let body = document.getElementsByTagName("body")[0];
+  body.style.backgroundColor = colorArr[colorChangeIdx];
+}
 
 /***
   each time we click the event listener we show another random quote
 ***/
 
-document.getElementById('loadQuote').addEventListener("click", printQuote, false);
+document.getElementById('loadQuote').addEventListener('click', () => {
+  printQuote();
+  changeColor();
+});
+
+/***
+  After 20 seconds we print a new quote automatically
+***/
+
+setInterval(() => {
+  printQuote();
+  changeColor();
+}, 20000)
